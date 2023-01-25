@@ -1,13 +1,10 @@
-import { useEffect } from "react";
 import { useGithub } from "../context/github/GithubContext";
 import UserItem from "./UserItem";
 
 const UserResults = () => { 
-    const {users, loading, fetchUsers} = useGithub()
+    const {users, loading} = useGithub()
 
-    useEffect(() => {
-        fetchUsers()
-    },[])
+   
 
     if(!loading){
         return ( 
