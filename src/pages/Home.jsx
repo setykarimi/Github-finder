@@ -1,12 +1,13 @@
 import UserResults from "../components/users/UserResults";
+import UserSearch from "../components/users/UserSearch";
 
 const HomePage = () => {
-    return ( 
+    return (
         <>
-        {/* Search Component */}
+            <UserSearch />
             <UserResults />
         </>
-     );
+    );
 }
- 
+
 export default HomePage;
