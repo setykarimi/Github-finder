@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import githubReucer from "./GithubReducer";
+import gtihubReducer from "./GithubReducer";
 
 const GithubContext = createContext();
 
@@ -11,7 +11,7 @@ export const GithubProvider = ({ children }) => {
         loading: false
     }
 
-    const [state, dispatch] = useReducer(githubReucer, initialState)
+    const [state, dispatch] = useReducer(gtihubReducer, initialState)
 
     
     const searchUsers = async (text) => {
