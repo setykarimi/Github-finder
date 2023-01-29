@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import alertReducer from "./AlertReducer";
 
 const AlertContext = createContext();
@@ -23,4 +23,4 @@ export const AlertProvider = ({ children }) => {
     </AlertContext.Provider>
 }
 
-export default AlertContext
+export const useAlert = () => useContext(AlertContext)
