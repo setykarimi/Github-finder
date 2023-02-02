@@ -2,12 +2,14 @@ import { Profile } from "iconsax-react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useGithub } from "../components/context/github/GithubContext";
+import RepoList from "../components/repos/RepoList";
 
 const User = () => {
-    const { getUser, user, loading } = useGithub()
+    const { getUser, user, loading, getUserRepos, repos } = useGithub()
     const params = useParams()
     useEffect(() => {
         getUser(params.login)
+        getUserRepos(params.login)
     }, [])
 
     const { name, type, avatar_url, location, bio, blog, twitter_username, login, html_url, followers, following, public_repos, public_gist, hireable } = user
@@ -79,6 +81,8 @@ const User = () => {
                             <span>{public_gist}</span>
                         </div>
                     </div>
+
+                    <RepoList repos={repos}/>
                 </div>
             </div>
         </>);
