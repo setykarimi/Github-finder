@@ -23,11 +23,11 @@ const UserSearch = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-control">
                         <div className="relative">
-                            <input type="text" className="w-full pr-40 bg-gray-200 input input-lg text-black"
+                            <input type="text" className="w-full pr-40 bg-gray-200 input input-md text-black"
                                 placeholder="Search"
                                 value={text}
                                 onChange={handleChange} />
-                            <button type="Submit" className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg">
+                            <button type="Submit" className="absolute top-0 right-0 rounded-l-none w-36 btn-primary btn btn-md">
                                 Go
                             </button>
                         </div>
@@ -36,7 +36,7 @@ const UserSearch = () => {
             </div>
             {users?.length > 0 && (
                 <div>
-                    <button className="btn btn-ghost btn-lg" onClick={clearUsers}>
+                    <button className="btn btn-md btn-accent" onClick={clearUsers}>
                         Clear
                     </button>
                 </div>
