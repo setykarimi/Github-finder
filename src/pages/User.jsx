@@ -1,4 +1,4 @@
-import { Profile } from "iconsax-react";
+import { ArrowCircleLeft, ArrowDown2, ArrowLeft, Profile } from "iconsax-react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useGithub } from "../components/context/github/GithubContext";
@@ -21,33 +21,42 @@ const User = () => {
         <>
             <div className="w-full mx-auto lg:w-10/12" >
                 <div className="mb-4">
-                    <Link to='/' className='btn btn-ghost'>
-                        Back to Search
+                    <Link to='/' className='flex items-center text-sm w-fit'>
+                        <ArrowLeft className="mr-2 text-sm" size="15" />  Back to Search
                     </Link>
                 </div>
 
-                <figure>
-                    <img src={avatar_url} alt="" />
-                </figure>
-                <h2>{name}</h2>
-                <p>{login}</p>
+                <div className="flex">
+                    <figure>
+                        <img src={avatar_url} alt="" className="rounded-full" />
+                    </figure>
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <h2 className="card-title	font-bold text-lg">{name}</h2>
+                                <span className="text-base-content text-opacity-40">{login}</span>
+                            </div>
+                            <div className="badge px-4 py-3 badge-accent">
+                                {type}
+                            </div>
+                        </div>
 
-                <div className="ml-2 mr-1 badge badge-success">
-                    {type}
+                        {hireable &&
+                            <div className="mx-1 badge badge-info">
+                                Hirebale
+                            </div>}
+                        <p>{bio}</p>
+                        <a className="btn btn-" href={html_url} target='_blank' rel="noreferrer">
+                            Visit Github Profile
+                        </a>
+
+
+                        {location && <div className="stat">
+                            {location}</div>}
+                    </div>
                 </div>
 
-                {hireable &&
-                    <div className="mx-1 badge badge-info">
-                        Hirebale
-                    </div>}
-                <p>{bio}</p>
-                <a className="btn btn-" href={html_url} target='_blank' rel="noreferrer">
-                    Visit Github Profile
-                </a>
 
-
-                {location && <div className="stat">
-                    {location}</div>}
 
                 {blog && <div><div className="stat">
                     {blog}</div>
@@ -75,14 +84,14 @@ const User = () => {
                             <h2>Public Repos</h2>
                             <span>{public_repos}</span>
                         </div>
-                        
+
                         <div className="">
                             <h2>Public Gist</h2>
                             <span>{public_gist}</span>
                         </div>
                     </div>
 
-                    <RepoList repos={repos}/>
+                    <RepoList repos={repos} />
                 </div>
             </div>
         </>);
