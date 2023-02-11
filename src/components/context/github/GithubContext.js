@@ -15,24 +15,24 @@ export const GithubProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(gtihubReducer, initialState)
 
-    
-    const searchUsers = async (text) => {
-        const params = new URLSearchParams({
-            q: text
-        })
-        setLoading()
-        const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
-            // headers: {
-            //     Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
-            // }
-        })
 
-        const {items} = await response.json()
-        dispatch({
-            type: 'GET_USERS',
-            payload: items
-        })
-    }
+    // const searchUsers = async (text) => {
+    //     const params = new URLSearchParams({
+    //         q: text
+    //     })
+    //     setLoading()
+    //     const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
+    //         // headers: {
+    //         //     Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
+    //         // }
+    //     })
+
+    //     const { items } = await response.json()
+    //     dispatch({
+    //         type: 'GET_USERS',
+    //         payload: items
+    //     })
+    // }
 
     // Get single user
     const getUser = async (login) => {
@@ -43,7 +43,7 @@ export const GithubProvider = ({ children }) => {
             // }
         })
 
-        if(response.status === 400 ){
+        if (response.status === 400) {
             window.location = '/notfound'
         } else {
             const data = await response.json()
@@ -52,7 +52,7 @@ export const GithubProvider = ({ children }) => {
                 payload: data
             })
         }
-        
+
     }
 
     // Get user repos
@@ -77,17 +77,15 @@ export const GithubProvider = ({ children }) => {
     }
 
     const clearUsers = () => {
-        dispatch({type: 'CLEAR_USERS'})
+        dispatch({ type: 'CLEAR_USERS' })
     }
 
-    const setLoading = () => dispatch({type: 'SET_LOADING'})
+    const setLoading = () => dispatch({ type: 'SET_LOADING' })
 
     return <GithubContext.Provider value={{
-        users: state.users,
-        loading: state.loading, 
-        user: state.user,
-        repos: state.repos,
-        searchUsers,
+        ...state,
+        dispatch,
+        // searchUsers,
         clearUsers,
         getUser,
         getUserRepos
