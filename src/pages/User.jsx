@@ -1,16 +1,26 @@
 import { ArrowCircleLeft, ArrowDown2, ArrowLeft, Location, LocationCross, LocationMinus, Profile } from "iconsax-react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getUser, getUserRepos } from "../components/context/github/GithubActions";
 import { useGithub } from "../components/context/github/GithubContext";
 import RepoList from "../components/repos/RepoList";
 
 const User = () => {
-    const { getUser, user, loading, getUserRepos, repos } = useGithub()
+    const { user, loading, repos, dispatch } = useGithub()
     const params = useParams()
     useEffect(() => {
-        getUser(params.login)
-        getUserRepos(params.login)
-    }, [])
+
+        dispatch({ type: 'SET_LOADING' })
+        const getUserData = async () => {
+            const userData = await getUser(params.login)
+            dispatch({ type: 'GET_USER', payload: userData })
+
+            const userRepoData = await getUserRepos(params.login)
+            dispatch({ type: 'GET_REPOS', payload: userData })
+        }
+
+        getUserData()
+    }, [dispatch, params.login])
 
     const { name, type, avatar_url, location, bio, blog, twitter_username, login, html_url, followers, following, public_repos, public_gist, hireable } = user
 
@@ -74,31 +84,31 @@ const User = () => {
                 <a href={`https://twitter.com/${twitter_username}`} target='_blank' rel="noreferrer">{twitter_username}</a>
             }
 
-            
+
+            <div className="">
                 <div className="">
-                    <div className="">
-                        <h2>Followers</h2>
-                        <span>{followers}</span>
-                    </div>
-
-                    <div className="">
-                        <h2>Following</h2>
-                        <span>{following}</span>
-                    </div>
-
-                    <div className="">
-                        <h2>Public Repos</h2>
-                        <span>{public_repos}</span>
-                    </div>
-
-                    <div className="">
-                        <h2>Public Gist</h2>
-                        <span>{public_gist}</span>
-                    </div>
+                    <h2>Followers</h2>
+                    <span>{followers}</span>
                 </div>
 
-                <RepoList repos={repos} />
-           
+                <div className="">
+                    <h2>Following</h2>
+                    <span>{following}</span>
+                </div>
+
+                <div className="">
+                    <h2>Public Repos</h2>
+                    <span>{public_repos}</span>
+                </div>
+
+                <div className="">
+                    <h2>Public Gist</h2>
+                    <span>{public_gist}</span>
+                </div>
+            </div>
+
+            <RepoList repos={repos} />
+
         </div>
     );
 }
