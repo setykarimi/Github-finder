@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAlert } from "../context/alert/AlertContext";
 import { useGithub } from "../context/github/GithubContext";
 import { searchUsers } from "../context/github/GithubActions";
+import Alert from "../layout/Alert";
 
 const UserSearch = () => {
     const [text, setText] = useState('');
@@ -23,6 +24,7 @@ const UserSearch = () => {
     return (
         <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8">
             <div>
+            <Alert />
                 <form onSubmit={handleSubmit}>
                     <div className="form-control">
                         <div className="relative">
@@ -36,6 +38,7 @@ const UserSearch = () => {
                         </div>
                     </div>
                 </form>
+                
             </div>
             {users?.length > 0 && (
                 <div>
