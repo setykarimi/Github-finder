@@ -28,88 +28,58 @@ const User = () => {
         return <div>loading</div>
     }
     return (
-        <div className="w-full mx-auto lg:w-10/12" >
-            <div className="mb-4">
-                <Link to='/' className='flex items-center text-sm w-fit'>
-                    <ArrowLeft className="mr-2 text-sm" size="15" />  Back to Search
-                </Link>
-            </div>
+        <>
+            <div className="w-full mx-auto lg:w-10/12">
+                <div className="mb-4">
+                    <Link to='/' className="btn btn-ghost">
+                        Back to Search
+                    </Link>
+                </div>
 
-            <div className="grid grid-cols-4 gap-5 border p-4 rounded-lg">
-                <figure className="flex flex-col items-center">
-                    <img src={avatar_url} alt="" className="rounded-full" />
-                    <a className="link link-secondary text-xs mt-3" href={html_url} target='_blank' rel="noreferrer">
-                        Visit Github Profile
-                    </a>
-                </figure>
+                <div
+                    className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8 md:gap-8">
+                    <div className="custom-card-image mb-6 md:mb-0">
+                        <div className="rounded-lg shadow-xl card image-full">
+                            <figure>
+                                <img src={avatar_url} alt="" />
+                            </figure>
+                            <div className="card-body justify-end ">
+                                <h2 className="card-title mb-0 text-white">
+                                    {name}
+                                </h2>
 
-                <div className="col-span-3">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h2 className="card-title font-bold text-lg">{name}</h2>
-                            <div className="flex w-full mt-2">
-                                <span className="text-base-content text-opacity-40">{login}</span>
-                                <div className="divider divider-horizontal mx-2"></div>
-                                {
-                                    location &&
-                                    <div className="flex gap-1 items-center text-base-content text-opacity-40">
-                                        <Location size={15} />
-                                        <span>{location}</span>
-                                    </div>
-                                }
+                                <span className="text-white">{login}</span>
                             </div>
-                        </div>
-                        <div className="flex gap-2">
-                            <div className="badge badge-accent">
-                                {type}
-                            </div>
-                            {
-                                hireable &&
-                                <div className="badge badge-info">
-                                    Hirebale
-                                </div>
-                            }
                         </div>
                     </div>
-                    <p className="mt-2">{bio}</p>
-                    {blog &&
-                        <a className="link link-info mt-1 block" href={`https://${blog}`} target='_blank' rel="noreferrer">{blog}</a>
-                    }
+
+                    <div className="col-span-2">
+                        <div className="mb-6">
+                            <h1 className="text-3xl card-title">
+                                {name}
+                                <div className="ml-2 mr-1 badge badge-success">
+                                    {type}
+                                </div>
+
+                                {hireable && (
+                                    <div className="mx-1 badge badge-info">
+                                        Hireable
+                                    </div>
+                                )}
+                            </h1>
+
+                            <p>{bio}</p>
+                            <div className="mt-4 card-actions">
+                                <a href={html_url} target='_blank' rel="noreferrer" className="btn btn-outline">
+                                    Visit Github Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-            {
-                twitter_username &&
-                <a href={`https://twitter.com/${twitter_username}`} target='_blank' rel="noreferrer">{twitter_username}</a>
-            }
-
-
-            <div className="">
-                <div className="">
-                    <h2>Followers</h2>
-                    <span>{followers}</span>
-                </div>
-
-                <div className="">
-                    <h2>Following</h2>
-                    <span>{following}</span>
-                </div>
-
-                <div className="">
-                    <h2>Public Repos</h2>
-                    <span>{public_repos}</span>
-                </div>
-
-                <div className="">
-                    <h2>Public Gist</h2>
-                    <span>{public_gist}</span>
-                </div>
-            </div>
-
-            <RepoList repos={repos} />
-
-        </div>
+        </>
     );
 }
 
