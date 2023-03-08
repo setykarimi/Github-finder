@@ -36,11 +36,11 @@ const User = () => {
                 </div>
 
                 <div
-                    className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8 md:gap-8">
+                    className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 mb-8 md:gap-8">
                     <div className="custom-card-image mb-6 md:mb-0">
                         <div className="rounded-lg shadow-xl card image-full">
                             <figure>
-                                <img src={avatar_url} alt="" />
+                                <img src={avatar_url} alt="userProfile" />
                             </figure>
                             <div className="card-body justify-end ">
                                 <h2 className="card-title mb-0 text-white">
@@ -52,7 +52,7 @@ const User = () => {
                         </div>
                     </div>
 
-                    <div className="col-span-2">
+                    <div className="col-span-3 flex flex-col justify-between">
                         <div className="mb-6">
                             <h1 className="text-3xl card-title">
                                 {name}
