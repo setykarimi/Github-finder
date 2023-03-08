@@ -13,22 +13,22 @@ function App() {
   return (
     <GithubProvider>
       <AlertProvider>
-        {/* <Alert> */}
           <BrowserRouter>
             <div className="flex flex-col justify-between h-screen">
               <Navbar />
               <main className="container mx-auto px-3 pb-12">
+       
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/user/:login" element={<User />} />
                   <Route path="/" element={<Notfound />} />
                 </Routes>
+        
               </main>
               <Footer />
             </div>
           </BrowserRouter>
-        {/* </Alert> */}
       </AlertProvider>
     </GithubProvider>
   );
