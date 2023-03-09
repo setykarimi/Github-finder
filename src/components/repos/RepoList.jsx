@@ -9,7 +9,9 @@ const RepoList = ({ repos }) => {
                 <h2 className="text-3xl my-4 font-bold card-title">
                     Latest Repositiories
                 </h2>
-            {repos.map((repo) => <RepoItem key={repo.id} repo={repo} />)}
+                <div className='grid md:grid-cols-2 gap-5'>
+                    {repos.map((repo) => <RepoItem key={repo.id} repo={repo} />)}
+                </div>
             </div>
         </div>);
 }
