@@ -1,9 +1,7 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 import gtihubReducer from "./GithubReducer";
 
 const GithubContext = createContext();
-
-const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 
 export const GithubProvider = ({ children }) => {
     const initialState = {
@@ -14,8 +12,6 @@ export const GithubProvider = ({ children }) => {
     }
 
     const [state, dispatch] = useReducer(gtihubReducer, initialState)
-
-   
 
 
     return <GithubContext.Provider value={{
