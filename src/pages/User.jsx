@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { FaCode, FaCodepen, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
+import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { getUser, getUserRepos } from "../components/context/github/GithubActions";
 import { useGithub } from "../components/context/github/GithubContext";
+import RepoList from "../components/repos/RepoList";
 
 const User = () => {
     const { user, loading, repos, dispatch } = useGithub()
@@ -162,6 +163,8 @@ const User = () => {
                         </div>
                     </div>
                 </div>
+
+                <RepoList repos={repos}/>
             </div>
 
         </>
