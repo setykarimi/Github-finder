@@ -1,6 +1,6 @@
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 
-
+// Get search result
 export const searchUsers = async (text) => {
     const params = new URLSearchParams({
         q: text
@@ -12,6 +12,7 @@ export const searchUsers = async (text) => {
     return items
 }
 
+// Get single user
 export const getUser = async (login) => {
     const response = await fetch(`${GITHUB_URL}/users/${login}`)
 
