@@ -9,6 +9,7 @@ const UserSearch = () => {
     const { users, dispatch } = useGithub();
     const { setAlert } = useAlert()
 
+    // Handle change for text
     const handleChange = (e) => setText(e.target.value)
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -21,6 +22,7 @@ const UserSearch = () => {
             setText('')
         }
     }
+
     return (
         <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8">
             <div>
