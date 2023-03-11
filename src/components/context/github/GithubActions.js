@@ -26,7 +26,7 @@ export const getUser = async (login) => {
 }
 
 // Get user repos
-export const getUserRepos = async (login) => {
+ export const getUserRepos = async (login) => {
     const params = new URLSearchParams({
         sort: 'created',
         per_page: 10
