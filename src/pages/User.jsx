@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import { getUser, getUserRepos } from "../components/context/github/GithubActions";
+import { getUserAndRepos } from "../components/context/github/GithubActions";
 import { useGithub } from "../components/context/github/GithubContext";
 import RepoList from "../components/repos/RepoList";
 
@@ -12,11 +12,9 @@ const User = () => {
 
         dispatch({ type: 'SET_LOADING' })
         const getUserData = async () => {
-            const userData = await getUser(params.login)
-            dispatch({ type: 'GET_USER', payload: userData })
+            const userData = await getUserAndRepos(params.login)
+            dispatch({ type: 'GET_USER_AND_REPOS', payload: userData })
 
-            const userRepoData = await getUserRepos(params.login)
-            dispatch({ type: 'GET_REPOS', payload: userRepoData })
         }
 
         getUserData()
@@ -120,7 +118,7 @@ const User = () => {
                 <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                                <FaUsers className="text-3xl md:text-5xl"/>
+                            <FaUsers className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Followers
@@ -131,7 +129,7 @@ const User = () => {
                     </div>
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                                <FaUserFriends className="text-3xl md:text-5xl"/>
+                            <FaUserFriends className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Followings
@@ -142,7 +140,7 @@ const User = () => {
                     </div>
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                                <FaCode className="text-3xl md:text-5xl"/>
+                            <FaCode className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Public Repos
@@ -153,7 +151,7 @@ const User = () => {
                     </div>
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                                <FaStore className="text-3xl md:text-5xl"/>
+                            <FaStore className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Public Gist
@@ -164,7 +162,7 @@ const User = () => {
                     </div>
                 </div>
 
-                <RepoList repos={repos}/>
+                <RepoList repos={repos} />
             </div>
 
         </>
